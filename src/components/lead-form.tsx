@@ -38,6 +38,7 @@ export function LeadForm() {
           name: formData.get("name"),
           email: formData.get("email"),
           company: formData.get("company"),
+          phone: formData.get("phone"),
           message: formData.get("message"),
         };
 
@@ -98,6 +99,18 @@ export function LeadForm() {
           name="company"
           type="text"
           placeholder="(주)회사"
+          className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+        />
+      </div>
+      <div>
+        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+          연락처
+        </label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          placeholder="010-0000-0000"
           className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         />
       </div>

@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const body = await request.json();
 
-  const { name, email, company, message } = body;
+  const { name, email, company, phone, message } = body;
 
   if (!name || !email || !message) {
     return NextResponse.json(
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
   const [lead] = await db
     .insert(leads)
-    .values({ name, email, company: company || null, message })
+    .values({ name, email, company: company || null, phone: phone || null, message })
     .returning();
 
   return NextResponse.json({ success: true, lead }, { status: 201 });
