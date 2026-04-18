@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { db } from "@/db";
 import { leads } from "@/db/schema";
 import { NextResponse } from "next/server";
