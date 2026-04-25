@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { EditModal } from "./edit-modal";
+import { MemoModal } from "./memo-modal";
 
 type Lead = {
   id: number;
@@ -20,6 +21,7 @@ type Props = {
 export function LeadsTable({ leads: initialLeads }: Props) {
   const [leads, setLeads] = useState(initialLeads);
   const [editingLead, setEditingLead] = useState<Lead | null>(null);
+  const [memoLead, setMemoLead] = useState<Lead | null>(null);
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const [loadingId, setLoadingId] = useState<number | null>(null);
   const [errorId, setErrorId] = useState<number | null>(null);
@@ -75,6 +77,9 @@ export function LeadsTable({ leads: initialLeads }: Props) {
           onClose={() => setEditingLead(null)}
         />
       )}
+      {memoLead && (
+        <MemoModal lead={memoLead} onClose={() => setMemoLead(null)} />
+      )}
       <div className="rounded-xl border border-gray-200 bg-white overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -128,6 +133,12 @@ export function LeadsTable({ leads: initialLeads }: Props) {
                       </div>
                     ) : (
                       <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => setMemoLead(lead)}
+                          className="text-xs font-medium text-gray-500 hover:text-gray-700"
+                        >
+                          메모
+                        </button>
                         <button
                           onClick={() => setEditingLead(lead)}
                           className="text-xs font-medium text-blue-600 hover:text-blue-800"
